@@ -2,6 +2,26 @@ let buying = true,
     total = 0,
     discount = 0
 
+const productArray = []
+
+class NewProduct{
+    constructor(id, name, price, stock){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+    }
+}
+
+const AirMax = new NewProduct(1, 'Air MAx', 500, 12) 
+productArray.push(AirMax)
+const SC = new NewProduct(2, 'SC', 250, 10)
+productArray.push(SC)
+const Jordan = new NewProduct(3, 'Jordan', 1000, 20)
+productArray.push(Jordan)
+const OffWhitte = new NewProduct(4, 'Off Whitte', 2050, 5)
+productArray.push(OffWhitte)
+
 const getDiscount = total => {
     if (total > 3000){
         discount = total * 0.25
@@ -17,29 +37,25 @@ const getDiscount = total => {
 }
 
 const addToCart = product => {
-    switch (product) {
-        case 1:
-            total += 500
-            break;
-        case 2:
-            total += 250
-            break;
-        case 3:
-            total += 1000
-            break;
-        case 4:
-            total += 2050
-            break;
-    }
+    total = total + productArray[product-1].price
 }
 
 while (buying) {
-    let products = parseInt(prompt("¿Qué modelo zapatillas desea agregar al carrito: 1. Air Max($500), 2. SC($200), 3. Jordan($1000), 4. Off Whitte($2050)?"))
+    let products = parseInt(
+        prompt(
+            "¿Qué modelo zapatillas desea agregar al carrito: 1. Air Max($500), 2. SC($200), 3. Jordan($1000), 4. Off Whitte($2050)?"
+            )
+        )
     addToCart(products)
-
-    let keepBuying = prompt("¿Desea seguir comprando? si/no:")
+    let keepBuying = 
+    prompt(
+        "¿Desea seguir comprando? si/no:"
+        )
     while (keepBuying !== "no" && keepBuying !== "si") {
-        keepBuying = prompt("Responda: si/no")
+        keepBuying = 
+        prompt(
+            "Responda: si/no"
+            )
     }
     if (keepBuying === "no") {
         buying = false
